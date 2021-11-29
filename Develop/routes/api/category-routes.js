@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name
   })
-    .then(categoryData => res.json(categoryData))
+    .then(dbCategoryData => res.json(dbCategoryData))
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -73,12 +73,12 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(categoryData => {
-      if (!categoryData) {
+    .then(dbCategoryData => {
+      if (!dbCategoryData) {
         res.status(404).json({message:'No category was found with this id'});
         return;
       }
-      res.json(categoryData);
+      res.json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
@@ -93,12 +93,12 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(categoryData => {
-      if (!categoryData){
+    .then(dbCategoryData => {
+      if (!dbCategoryData){
         res.status(404).json({message: 'No category was found with that id.'});
         return;
       }
-      res.json(categoryData);
+      res.json(dbCategoryData);
     })
     .catch(err => {
       console.log(err);
